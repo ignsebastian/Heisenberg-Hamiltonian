@@ -64,3 +64,100 @@ for i in range(0,N):
 print(S)
 
 #df_sz = pd.read_csv("/content/magnetization.csv")
+
+
+##Printing the graph coordinate
+plt.figure()
+
+for bnd in bond:
+  if np.round(np.sqrt((site_coord[bnd[0]][0]-site_coord[bnd[1]][0])**2 + (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])**2)) == 1*a_const :
+    plt.plot([site_coord[bnd[0]][0],site_coord[bnd[1]][0]],[site_coord[bnd[0]][1],site_coord[bnd[1]][1]], color="k", linewidth=1, zorder=1)
+
+
+for i in range(1,25):
+  plt.scatter(site_coord[i][0],site_coord[i][1], df_sz["<Sz>"][i-1]*500, color="b", zorder=2)
+  plt.scatter(site_coord[i][0],site_coord[i][1], -df_sz["<Sz>"][i-1]*500, color="r", zorder=3)
+
+plt.xlabel("x (in a)")
+plt.ylabel("y (in a)")
+
+plt.title("Magnetization")
+#plt.savefig('/content/Magnetization.png', dpi=1200)
+plt.show()
+
+
+#### Printing the Results on the Triangular Lattice - SzSz
+ind_foc = 18
+plt.figure()
+
+for bnd in bond:
+  if np.round(np.sqrt((site_coord[bnd[0]][0]-site_coord[bnd[1]][0])**2 + (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])**2)) == 1*a_const :
+    plt.plot([site_coord[bnd[0]][0],site_coord[bnd[1]][0]],[site_coord[bnd[0]][1],site_coord[bnd[1]][1]], color="k", linewidth=1, zorder=1)
+
+for i in range(1,41):
+  if i != ind_foc:
+    plt.scatter(site_coord[i][0],site_coord[i][1], C_szsz[ind_foc-1][i-1]*500, color="b", zorder=2)
+    plt.scatter(site_coord[i][0],site_coord[i][1], -C_szsz[ind_foc-1][i-1]*500, color="r", zorder=3)
+  else:
+    plt.scatter(site_coord[i][0],site_coord[i][1], 100, color = "g",zorder=2)
+
+plt.xlabel("x (in a)")
+plt.ylabel("y (in a)")
+
+plt.title("<SzSz>")
+plt.show()
+
+plt.figure()
+for bnd in bond:
+  if np.round(np.sqrt((site_coord[bnd[0]][0]-site_coord[bnd[1]][0])**2 + (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])**2)) == 1*a_const :
+    plt.plot([site_coord[bnd[0]][0],site_coord[bnd[1]][0]],[site_coord[bnd[0]][1],site_coord[bnd[1]][1]], color="k", linewidth=1, zorder=1)
+
+for i in range(1,41):
+  if i != ind_foc:
+    plt.scatter(site_coord[i][0],site_coord[i][1], C_spsm[ind_foc-1][i-1]*500, color="b", zorder=2)
+    plt.scatter(site_coord[i][0],site_coord[i][1], -C_spsm[ind_foc-1][i-1]*500, color="r", zorder=3)
+  else:
+    plt.scatter(site_coord[i][0],site_coord[i][1], 100, color = "g",zorder=2)
+
+plt.xlabel("x (in a)")
+plt.ylabel("y (in a)")
+
+plt.title("<S+S->")
+plt.show()
+
+plt.figure()
+for bnd in bond:
+  if np.round(np.sqrt((site_coord[bnd[0]][0]-site_coord[bnd[1]][0])**2 + (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])**2)) == 1*a_const :
+    plt.plot([site_coord[bnd[0]][0],site_coord[bnd[1]][0]],[site_coord[bnd[0]][1],site_coord[bnd[1]][1]], color="k", linewidth=1, zorder=1)
+
+for i in range(1,41):
+  if i != ind_foc:
+    plt.scatter(site_coord[i][0],site_coord[i][1], C_smsp[ind_foc-1][i-1]*5000, color="b", zorder=2)
+    plt.scatter(site_coord[i][0],site_coord[i][1], -C_smsp[ind_foc-1][i-1]*5000, color="r", zorder=3)
+  else:
+    plt.scatter(site_coord[i][0],site_coord[i][1], 100, color = "g",zorder=2)
+
+plt.xlabel("x (in a)")
+plt.ylabel("y (in a)")
+
+plt.title("<S-S+>")
+plt.show()
+
+plt.figure()
+for bnd in bond:
+  if np.round(np.sqrt((site_coord[bnd[0]][0]-site_coord[bnd[1]][0])**2 + (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])**2)) == 1*a_const :
+    plt.plot([site_coord[bnd[0]][0],site_coord[bnd[1]][0]],[site_coord[bnd[0]][1],site_coord[bnd[1]][1]], color="k", linewidth=1, zorder=1)
+
+
+for i in range(1,41):
+  if i != ind_foc:
+    plt.scatter(site_coord[i][0],site_coord[i][1], C_sisj[ind_foc-1][i-1]*5000, color="b", zorder=2)
+    plt.scatter(site_coord[i][0],site_coord[i][1], -C_sisj[ind_foc-1][i-1]*5000, color="r", zorder=3)
+  else:
+    plt.scatter(site_coord[i][0],site_coord[i][1], 100, color = "g",zorder=2)
+
+plt.xlabel("x (in a)")
+plt.ylabel("y (in a)")
+#plt.savefig('/content/SiSj_11.png', dpi=1200)
+plt.title("<SiSj>")
+plt.show()
