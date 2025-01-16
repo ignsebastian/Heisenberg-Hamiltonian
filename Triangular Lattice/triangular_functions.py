@@ -77,3 +77,16 @@ def triangular_coord(Nx,Ny,a1,a2):
       sites += 1
     x += a1[0]
   return site_coord
+
+############################# Function to calculate the correlator
+def correlator_momentum(kx,ky,site_coord,C):
+  C_k = 0
+  for i in range(0,N):
+    for j in range(0,N):
+      x_ij = (site_coord[bnd[0]][0]-site_coord[bnd[1]][0])
+      y_ij = (site_coord[bnd[0]][1]-site_coord[bnd[1]][1])
+      if site_coord[i+1] == site_coord[j+1]:
+        C_k += 1/N * C[i][j]
+      else:
+        C_k += 1/N * np.exp(kx*x_ij + ky*y_ij) * C[i][j]
+  return C_k
